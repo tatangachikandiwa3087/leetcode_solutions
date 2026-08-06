@@ -1,11 +1,15 @@
 class Solution:
     def minimumRecolors(self, blocks: str, k: int) -> int:
-        mn=10000
-        n=len(blocks)
-        for right in range(n-k+1):
-            c=0
-            for i in range(k):
-                if blocks[right+i]=='W':
-                   c+=1
-            mn=min(mn,c)
-        return min(c, mn)
+        first_window=blocks[:k]
+        w_c=0
+        for i in first_window:
+            if i=='W':
+                w_c+=1
+        mn=w_c
+        for i in range(k,len(blocks)):
+            if blocks[i]=="W":
+                w_c+=1
+            if blocks[i-k]=="W":
+                w_c-=1
+            mn=min(w_c,mn)
+        return mn 
