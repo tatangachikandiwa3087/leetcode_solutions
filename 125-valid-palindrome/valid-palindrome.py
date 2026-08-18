@@ -1,15 +1,17 @@
+def checkLetter(n):
+    return n.isalnum()
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        ps=""
+        lst=[]
         for i in s:
-            if i.isalnum():
-                ps+=i.lower()
+            if checkLetter(i):
+                lst.append(i.lower())
         left=0
-        right=len(ps)-1
+        right=len(lst)-1
         while left<right:
-            if ps[left]!=ps[right]:
-                return False
-            else:
+            if lst[left]==lst[right]:
                 left+=1
                 right-=1
+            else:
+                return False
         return True
