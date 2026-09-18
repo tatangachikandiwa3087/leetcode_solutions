@@ -3,6 +3,7 @@ class Solution:
         arr=[]
         open_b='([{'#round, square, curly
         close_b=')]}'#round, square, curly
+        d=dict(zip(close_b, open_b))#{')':'(',']':'[','}':'{'}
         for i in s:
             #open brackets go into the stack
             if i in open_b:#if stack is empty, sequence is invalid
@@ -12,7 +13,7 @@ class Solution:
                     return False
                 else: 
                     #check if stack top is the corresponding bracket for this closing bracket
-                    if i==')'  and arr[-1]=='(' or i==']'  and arr[-1]=='[' or i=='}'  and arr[-1]=='{':
+                    if d[i]==arr[-1]:
                         arr.pop()
                     else:
                         return False
